@@ -1,0 +1,56 @@
+[project]
+name = "geminaut"
+version = "0.1.0"
+description = "A terminal client for the Gemini protocol, with TLS certificate pinning (TOFU)."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Abdulkhaliq Farah" }]
+keywords = ["gemini", "gemini-protocol", "tui", "terminal", "smolweb", "gemtext"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Internet",
+    "Topic :: Terminals",
+]
+dependencies = [
+    "textual>=0.60",
+    "typer>=0.12",
+    "rich>=13.7",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.6",
+]
+
+[project.urls]
+Homepage = "https://github.com/abdulkhaliqfarah/geminaut"
+Issues = "https://github.com/abdulkhaliqfarah/geminaut/issues"
+
+[project.scripts]
+geminaut = "geminaut.cli:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/geminaut"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
